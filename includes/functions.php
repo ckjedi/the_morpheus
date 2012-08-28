@@ -1,5 +1,62 @@
 <?php
     //This file is the place to store all my awesome functions
+    
+    //Get All Portfolio Companies.
+    function get_portfolio_company_all(){
+       global $connection;
+        $query="SELECT * ";
+        $query .="FROM portfolio_company ";
+        $query .="ORDER BY name ";
+        $company_set = mysql_query($query, $connection);
+        confirm_query($company_set);
+        return $company_set;
+        
+    }
+    
+     function companylist(){
+         $output = "<ul class=\"subjects\">";
+            $company_set=get_portfolio_company_all();
+            // 4. Use returned data
+            while ($company = mysql_fetch_array($company_set)) {
+                    $output .= "<li";
+                    
+                    $output .= "><a href=\"company_edit.php?comp=" . urlencode($company["id"]) .
+                            "\">{$company["name"]}</a></li>";
+                    
+                    
+            }
+        $output .= "</ul>";
+        return $output;
+    }
+    
+
+    function mysql_prep($value){
+        $magic_quotes_active=get_magic_quotes_gpc();
+        $new_enough_php=function_exists("mysql_real_escape_string");//i.e PHP > v4.3.0
+        
+        if($new_enough_php){
+            if($magic_quotes_active){
+                $value=stripcslashes($value);
+            }
+            $value=mysql_real_escape_string($value);
+        }else{
+            if(!$magic_quotes_active){
+                $value=addcslashes($value);
+            }
+        }
+        return $value;
+        
+    }
+    
+    function redirect_to($location  = NULL){
+        if($location != NULL){
+            header("Location: {$location}");
+            exit;
+        }
+        
+    }
+    
+    
     function confirm_query($result_set){
         if (!$result_set) {
 	    die("Database query failed: " . mysql_error());
@@ -77,6 +134,8 @@
 	}
     }
     
+   
+    
     function navigation($sel_subject,$sel_page){
         $output = "<ul class=\"subjects\">";
             $subject_set=get_all_subjects();
@@ -86,7 +145,7 @@
                     if($subject["id"]==$sel_subject['id']){
                             $output .= " class=\"selected\"";
                     }
-                    $output .= "><a href=\"content.php?subj=" . urlencode($subject["id"]) .
+                    $output .= "><a href=\"edit_subject.php?subj=" . urlencode($subject["id"]) .
                             "\">{$subject["menu_name"]}</a></li>";
                     $page_set=get_pages_for_subject($subject["id"]);
                     $output .= "<ul class=\"pages\">";
@@ -96,12 +155,14 @@
                     if($page["id"]==$sel_page['id']){
                             $output .= " class=\"selected\"";
             }
-            $output .= "><a href=\"content.php?page=" . urlencode($page["id"]) .
-            "\">{$page["menu_name"]}</a></li>";
+                $output .= "><a href=\"content.php?page=" . urlencode($page["id"]) .
+                "\">{$page["menu_name"]}</a></li>";
+                }
+                $output .= "</ul>";
             }
-            $output .= "</ul>";
-    }
-	$output .= "</ul>";
+      
+        $output .= "</ul>";
+   
         return $output;
     }
 ?>
