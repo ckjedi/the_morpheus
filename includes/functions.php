@@ -13,7 +13,7 @@
         
     }
     
-     function companylist(){
+    function companylist(){
          $output = "<ul class=\"subjects\">";
             $company_set=get_portfolio_company_all();
             // 4. Use returned data
@@ -29,6 +29,34 @@
         return $output;
     }
     
+
+    function find_selected_company(){
+        global $sel_company;
+        if(isset($_GET['comp'])){
+        $sel_company=get_company_by_id($_GET['comp']);
+        }else {
+            $sel_company=NULL;
+            }
+    }
+    
+
+    function get_company_by_id($company_id){
+        global $connection;
+        $query="SELECT * ";
+        $query .="FROM portfolio_company ";
+        $query .="WHERE id=" . $company_id ." ";
+        $query .="LIMIT 1";
+        $result_set = mysql_query($query, $connection);
+        confirm_query($result_set);
+        //If no  rows are returned, fetch_array will return false
+        if($company=mysql_fetch_array($result_set)){
+            return $company;
+        }else{
+            return NULL;
+        }
+        
+    }
+
 
     function mysql_prep($value){
         $magic_quotes_active=get_magic_quotes_gpc();

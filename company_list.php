@@ -8,12 +8,12 @@
 			<table id="structure">
 				<tr>
 					<td id="navigation">
-						<?php echo navigation($sel_subject,$sel_page); ?>
+						<!--<?php echo navigation($sel_subject,$sel_page); ?>-->
 						<br />
 						<!--<a href="new_subject.php">+ Add a new subject</a>-->
 						<br>
 						<br>
-						<a href="list.php">Portfolio Companies</a>	
+						<a href="company_list.php">Portfolio Companies</a>	
 					</td>
 					<td id="page">
 						<div>
