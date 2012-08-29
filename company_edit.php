@@ -54,7 +54,6 @@
 				<tr>
 					<td id="navigation">
 						<!--<?php echo navigation($sel_subject,$sel_page); ?>-->
-						<br />
 						<!--<a href="new_subject.php">+ Add a new subject</a>-->
 						<br>
 						<br>
@@ -107,7 +106,7 @@
 							</p>
 							<input type="submit" name="submit" value="Edit Company" />
 							&nbsp;&nbsp;
-							<a href="company_delete.php?comp=<?php echo urlencode($sel_company['id']);?>" onclick="return confirm('Are you sure?');">Delete Company</a>
+							<!-- <a href="company_delete.php?comp=<?php echo urlencode($sel_company['id']);?>" onclick="return confirm('Are you sure?');">Delete Company</a> -->
 						</form>
 						<br />
 						<a href="company_list.php">Cancel</a>

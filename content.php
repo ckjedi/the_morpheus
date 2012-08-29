@@ -6,7 +6,7 @@
 			<table id="structure">
 				<tr>
 					<td id="navigation">
-						<?php echo navigation($sel_subject,$sel_page); ?>
+						<!-- <?php echo navigation($sel_subject,$sel_page); ?>
 						<br />
 						<!-- When we start using the Subjects and Pages-->
 						<!--<a href="new_subject.php">+ Add a new subject</a>-->
@@ -15,7 +15,7 @@
 						<a href="company_list.php">Portfolio Companies</a>	
 					</td>
 					<td id="page">
-						<!--
+						
 						<?php if(!is_null($sel_subject)){//subject selected?>
 						   <h2><?php echo $sel_subject['menu_name']; ?></h2>
 						   
@@ -28,9 +28,9 @@
 						   </div>
 						   
 						<?php } else {//nothing selected?>
-						   <h2>Selected a subject or page to edit</h2>
+						   <h2>Welcome to the gang!</h2>
 						<?php }?>
-						-->
+						
 					</td>
 				</tr>
 			</table>

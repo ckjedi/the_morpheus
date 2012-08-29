@@ -8,7 +8,6 @@
 				<tr>
 					<td id="navigation">
 						<!--<?php echo navigation($sel_subject,$sel_page); ?>-->
-						<br />
 						<!--<a href="new_subject.php">+ Add a new subject</a>-->
 						<br>
 						<br>
@@ -35,7 +34,11 @@
 							<p>Visible: 
 								<input type="radio" name="visible" value="0" /> No
 								&nbsp;
-								<input type="radio" name="visible" value="1" /> Yes
+								<input type="radio" name="visible" value="1" 
+								<?php 
+								echo " checked"; 
+								?>
+								/> Yes
 							</p>
 							<input type="submit" value="Add Company" />
 						</form>
